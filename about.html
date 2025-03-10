@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CalcSite</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        /* Main Content Styles */
+        .main-about {
+            flex: 1;
+            max-width: 1200px;
+            width: 90%;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .about-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .about-header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInLeft 1s ease-in-out;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+            animation: slideInRight 1s ease-in-out;
+        }
+        
+        .about-text h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-text p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        /* FAQ Accordion Styles */
+        .faq-section {
+            margin-top: 2rem;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        
+        .faq-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .accordion {
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .accordion-header {
+            background-color: #f8f8f8;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background-color: #eaeaea;
+        }
+        
+        .accordion-header h3 {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background-color: #ff9500;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-icon::before {
+            width: 100%;
+            height: 2px;
+            top: 9px;
+            left: 0;
+        }
+        
+        .accordion-icon::after {
+            width: 2px;
+            height: 100%;
+            top: 0;
+            left: 9px;
+        }
+        
+        .accordion-content {
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .accordion-text {
+            padding: 1rem 1.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .active .accordion-header {
+            background-color: #f0f0f0;
+        }
+        
+        .active .accordion-icon::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+        
+        .active .accordion-content {
+            max-height: 1000px; /* Large value to ensure content expands fully */
+        }
+        
+       
+        
+        /* Button Styles */
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #ff9500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #ffaa33;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">CalcSite</div>
+            <div class="nav-links">
+                <a href="#about">About CalcSite</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-about">
+        <section id="about" class="about-section">
+            <div class="about-header">
+                <h1>About CalcSite</h1>
+                <p>The story behind your favorite calculator</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/500/350" alt="CalcSite Calculator" />
+                </div>
+                
+                <div class="about-text">
+                    <h2>Our Mission</h2>
+                    <p>CalcSite was born out of a simple idea: to create a beautiful, intuitive calculator that makes daily calculations a breeze. Since our launch in 2023, we've been dedicated to providing users with a reliable tool that combines elegant design with powerful functionality.</p>
+                    <p>Our calculator features a responsive interface, support for all basic arithmetic operations, and additional functions like percentage calculations and sign toggling. We've also implemented full keyboard support, making it accessible across all devices.</p>
+                    <p>Whether you're a student, professional, or just someone who needs to crunch numbers occasionally, CalcSite is designed to make your life easier.</p>
+                    <a href="#" class="cta-button">Try It Now</a>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How accurate is CalcSite?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>CalcSite provides highly accurate results for all basic arithmetic operations. We've implemented specific algorithms to handle JavaScript's floating-point precision issues, ensuring you get reliable results even for complex calculations involving decimals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Can I use CalcSite offline?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Yes! CalcSite is designed to work offline once the page has loaded. We've implemented service workers to cache the application, allowing you to use it even without an internet connection. This makes it perfect for use in areas with limited connectivity.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Is there a mobile app available?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>While we don't currently have a dedicated mobile app, CalcSite is fully responsive and works perfectly on mobile browsers. You can even add it to your home screen for quick access, giving you an app-like experience without needing to download anything.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Do you support scientific calculations?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Our current version focuses on everyday arithmetic calculations. However, we're working on a scientific mode that will include trigonometric functions, logarithms, exponents, and more. Stay tuned for updates on this exciting addition!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Can I save my calculation history?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Currently, calculation history isn't saved between sessions. However, we're developing a feature that will allow you to save and export your calculation history. This will be particularly useful for accounting, budgeting, and other scenarios where you need to keep track of your calculations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Is CalcSite free to use?</h3>
+                            <div class="accordion-icon"></div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Yes, CalcSite is completely free to use! We believe in providing accessible tools without barriers. There are no hidden fees, subscriptions, or premium features. What you see is what you get – a powerful, beautiful calculator available to everyone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 CalcSite. Created with ❤️ by PosiBytes</p>
+    </footer>
+    
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Toggle active class
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    accordionItems.forEach(accordionItem => {
+                        accordionItem.classList.remove('active');
+                    });
+                    
+                    // If the clicked item wasn't active, make it active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                    
+                    // Add smooth scrolling if item is not in viewport
+                    if (!isActive) {
+                        setTimeout(() => {
+                            const rect = item.getBoundingClientRect();
+                            const isInViewport = (
+                                rect.top >= 0 &&
+                                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                            );
+                            
+                            if (!isInViewport) {
+                                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Open first accordion item by default
+            if (accordionItems.length > 0) {
+                accordionItems[0].classList.add('active');
+            }
+        });
+        
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation when elements come into view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements with animation
+        document.querySelectorAll('.about-section, .faq-section').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
